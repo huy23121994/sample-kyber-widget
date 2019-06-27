@@ -10,6 +10,9 @@ exports.pay = function (req, res) {
     hash: data.tx,
     payment_token: data.paymentToken,
     book_id: data.bookId
+  }).then(data => {
+    console.log(data)
+    res.send('OK')
   })
 }
 

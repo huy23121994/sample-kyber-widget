@@ -1,11 +1,12 @@
 var express = require('express');
 var settingsController = require('../controllers/settingsController');
 var paymentsController = require('../controllers/paymentsController');
+
 var router = express.Router();
 
 router.use(function (req, res, next) {
   if(req.path != '/txs-json'){
-    paymentsController.updateTxStatus()
+    // paymentsController.updateTxStatus()
   }
   next()
 })
@@ -36,6 +37,14 @@ router.get('/txs-json', function(req, res, next) {
 
 router.get('/txs', function(req, res, next) {
   paymentsController.currentUserTxs(req, res);
+});
+
+router.get('/test', function(req, res, next) {
+  settingsController.getAccessToken(req, res)
+});
+
+router.get('/current-user', function(req, res, next) {
+  settingsController.getUserInfo(req, res)
 });
 
 module.exports = router;
